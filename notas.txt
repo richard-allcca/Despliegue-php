@@ -1,0 +1,31 @@
+================
+Crear - Create
+================
+
+
+================
+leer - Read
+================
+1 - en el archivo vista Inicio
+  => hacemos un peticion al controlador formularios
+2 - en controlador_Formulario, ctrControladorRegistro
+  => creamos 1 metodo, en el enviamos al modelo los parametros de la tabla
+3 - creamos un metodo en modelo_formulario
+  => creamos el metodo mdlSleccionarRegistro
+4 - hacemos que los datos conseguidos se renderizen en nuestra tabla body
+  => con un foreach, ten cuidado con la sintaxis
+
+5 - FECHA 
+  => sigue el ejemplo en formulario_modelo
+
+DATO si quieres ordenar en forma descendente el contenido de la tabla usa en formulario_modelo
+  =>  en el metodo mdlSleccionarRegistro al final de la conexion despues de $tabla [ORDER BY id "DESC ó ASC"]
+    $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha FROM $tabla ORDER BY id DESC");
+
+================
+Ingreso - Login
+================
+1- preparar el html Ingreso
+  => modifica el valor de name en correo y password 
+2- crea un metodo(función) no estatico en el controlador
+  =>  sigue el ejemplo
