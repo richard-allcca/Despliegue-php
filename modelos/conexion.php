@@ -3,17 +3,6 @@
 class Conexion
 {
 
-  private $host;
-  private $nameDb;
-  private $username;
-  private $password;
-  private $charset;
-
-  // public function __construct()
-  // {
-
-  // }
-
   static public function conectar()
   {
     $host = 'bmoauciibxgvelyfa5vo-mysql.services.clever-cloud.com';

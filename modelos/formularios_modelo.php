@@ -31,8 +31,9 @@ class ModeloFormularios
     // luego de cerrar conexión vaciamos el formulario
     $stmt = null;
   }
+
   /*  =============================
-    Seleccionar Registros
+  *  Seleccionar Registros
   ============================= */
   static public function mdlSeleccionarRegistros($tabla, $item, $valor)
   {
@@ -64,6 +65,34 @@ class ModeloFormularios
     // $stmt->close();
     $link = null;
 
+    $stmt = null;
+  }
+
+  /*  =============================
+  *  Actualizar Registros
+  ============================= */
+  static public function mdlActualizarRegistros($tabla, $datos)
+  {
+
+    $stmt = Conexion::conectar()->prepare("UPDATE  $tabla SET nombre=:nombre, email=:email, password=:password WHERE id=:id");
+
+    $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+    $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+    $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+    $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+
+      return "ok";
+    } else {
+      print_r(Conexion::conectar()->errorInfo());
+    }
+
+    // con esto cerramos la conexion que exista en ese momento 
+    // $stmt->close();//anterior forma de cerrar la conexion
+    $link = null; //* nueva forma de cerrar la conexion
+
+    // luego de cerrar conexión vaciamos el formulario
     $stmt = null;
   }
 }
