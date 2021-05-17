@@ -18,12 +18,12 @@ class Conexion
   {
     $host = 'bmoauciibxgvelyfa5vo-mysql.services.clever-cloud.com';
     $nameDb = 'bmoauciibxgvelyfa5vo';
-    $username = 'uqbw9yjdtwjqptv40';
+    $username = 'uqbw9yjdtwjqptv4';
     $password = '04V58mJjmgEQVR5EIUo6';
-    $charset = '=utf8mb4';
+    $charset = 'utf8mb4';
 
     try {
-      $conexion = "mysql:host=" . $host . ";dbname=" . $nameDb . ";charset=" . $charset . $charset;
+      $conexion = "mysql:host=" . $host . ";dbname=" . $nameDb . ";charset=" . $charset;
       $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES => FALSE,
@@ -32,8 +32,8 @@ class Conexion
       $PDO = new PDO($conexion, $username, $password, $options);
 
       return $PDO;
-    } catch (\Throwable $th) {
-      //throw $th;
+    } catch (PDOException $e) {
+      print_r('Error conexion: ' . $e->getMessage()) . "<br>";
     }
   }
 
