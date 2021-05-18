@@ -1,3 +1,9 @@
+# inicio de servidor local 
+- php -S localhost:8000
+=> comando para inicio sin xampp
+
+
+
 ================
 Crear - Create
 ================
