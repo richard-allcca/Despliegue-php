@@ -20,6 +20,7 @@ class ControladorFormulario
       return $respuesta;
     }
   }
+
   /*  =============================
     * Seleccionar Registros para pintarlos en pestaña inicio
   ============================= */
@@ -35,6 +36,7 @@ class ControladorFormulario
     // 3° lo que traiga el modelo lo muestre la vista
     return $respuesta;
   }
+
   /*  =============================
     * Ingreso
   ============================= */
@@ -83,6 +85,7 @@ class ControladorFormulario
       }
     }
   }
+
   /*  =============================
       * Actualizar Registros
     ============================= */
@@ -123,6 +126,31 @@ class ControladorFormulario
           </script>';
       } else {
         echo "Error";
+      }
+    }
+  }
+
+  /*  =============================
+        * Eliminar Registros
+      ============================= */
+  public function ctrEliminarRegistro()
+  {
+    if (isset($_POST['eliminarRegistro'])) {
+
+      $tabla = "registros";
+      $valor = $_POST['eliminarRegistro'];
+
+      $respuesta = ModeloFormularios::mdlEliminarrRegistros($tabla, $valor);
+
+      if ($respuesta == "ok") {
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
+        echo '<script>
+        if(window.history.replaceState) {
+          window.history.replaceState(null,null,window.location.href);
+        }
+        window.location  = "index.php?pagina=inicio";
+        </script>';
       }
     }
   }

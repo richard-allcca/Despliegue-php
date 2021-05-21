@@ -17,11 +17,11 @@
 
   //? si es un metodo static hacemos la peticion al controlador Formularios,instanciando  la classe y su metodo
   $usuarios = ControladorFormulario::ctrSeleccionarRegistros(null, null);
-  // echo '<pre>';print_r($usuarios);echo'</pre>';
 
 
 
   ?>
+ <!-- tabla para contenido desde la base de datos -->
  <table class="table table-striped">
    <thead>
      <tr>
@@ -43,10 +43,33 @@
          <td><?php echo $value["fecha"]; ?></td>
          <td>
            <div class="btn-group">
-             <a href="index.php?pagina=editar&id=<?php echo $value["id"]; ?>" class="btn btn-warning">
-               <i class="fas fa-pencil-alt"></i>
-             </a>
-             <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+             <!-- Botones de Editar y Eliminar -->
+
+             <div class="px-1">
+               <!-- div y clase para separado de botones -->
+
+               <a href="index.php?pagina=editar&id=<?php echo $value["id"]; ?>" class="btn btn-warning">
+                 <i class="fas fa-pencil-alt"></i></a>
+
+             </div>
+
+             <!-- formulario para enviar el id con este boton y poder eliminar -->
+             <form method="post">
+
+               <input type="hidden" value="<?php echo $value["id"]; ?>" name="eliminarRegistro">
+               <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+               <?php
+
+                //* instanciando clase del controlador para ejecutar el metodo eliminar
+                
+                $eliminar = new ControladorFormulario();
+                $eliminar->ctrEliminarRegistro();
+
+                ?>
+
+             </form>
+
            </div>
          </td>
        </tr>

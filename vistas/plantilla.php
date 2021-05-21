@@ -29,24 +29,27 @@ session_start();
 
 
   <!-- =============================
-    BOTONERA
+    BOTONERA SEGUN EL VALOR DE $_GET
   ============================= -->
+
   <div class="container-fluid bg-light">
     <div class="container">
       <ul class="nav nav-justified py-2 nav-pills">
 
         <?php if (isset($_GET["pagina"])) : ?>
+          <!-- si viene la variable pagina entonces -->
 
           <?php if ($_GET["pagina"] == "registro") : ?>
+            <!-- validamos que contiene la variable pagina -->
 
             <li class="nav-item ">
-              <a href="index.php?pagina=registro" class="nav-link active">Registro</a>
+              <a href="index.php?pagina=registro" class="nav-link active">Registro</a><!-- agregando clase active -->
             </li>
 
           <?php else : ?>
 
             <li class="nav-item ">
-              <a href="index.php?pagina=registro" class="nav-link ">Registro</a>
+              <a href="index.php?pagina=registro" class="nav-link ">Registro</a><!-- quitando la clase active -->
             </li>
 
           <?php endif ?>
@@ -95,9 +98,7 @@ session_start();
 
         <?php else : ?>
 
-          <!-- GET $_GET["variable"] Variables que se pasan como Vía URL(cadena de consulta a travez de la URL)
-        Cuando es la primera variable se separa con ?
-        las que siguen se separan con & -->
+          <!-- si no viene nada en la variable pagina entonces pinta este nav en pantalla -->
 
           <li class="nav-item ">
             <a href="index.php?pagina=registro" class="nav-link active">Registro</a>
@@ -121,8 +122,9 @@ session_start();
       </ul>
     </div>
   </div>
+
   <!-- =============================
-    TABLA
+      RENDERIZADO DE CONTENIDO SEGUN EL VALOR DE $_GET
   ============================= -->
   <div class="container-fluid">
     <div class="container py-5">

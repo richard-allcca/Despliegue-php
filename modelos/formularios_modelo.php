@@ -95,4 +95,24 @@ class ModeloFormularios
     // luego de cerrar conexión vaciamos el formulario
     $stmt = null;
   }
+
+  /*  =============================
+  *  Actualizar Registros
+  ============================= */
+  static public function mdlEliminarrRegistros($tabla, $valor)
+  {
+
+    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :valor");
+    $stmt->bindParam(":valor", $valor, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+
+      return "ok";
+    } else {
+      print_r(Conexion::conectar()->errorInfo());
+    }
+
+    $stmt->null;
+    $stmt = null;
+  }
 }
